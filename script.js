@@ -1,18 +1,23 @@
+import { LinkedList, Node } from "./linked-list.js";
+
 class HashMap {
   capacity = 16;
   buckets = Array.from({ length: this.capacity }, () => null);
   loadFactor = 0.75;
-  
-  hash(key) { 
+
+  hash(key) {
     let hashCode = 0;
 
     const primeNumber = 31;
-    for(let i = 0; i < key.length; i++) {
-      hashCode = primeNumber * hashCode + key.charCodeAt(i);
+    for (let i = 0; i < key.length; i++) {
+      hashCode = (primeNumber * hashCode + key.charCodeAt(i)) % this.capacity;
     }
     return hashCode;
   }
+
+  set(key, value) {
+    // 
+  }
 }
 
-console.log(new HashMap().hash("alo parcerio oi"));
-
+console.log(new HashMap().hash("alo"));
