@@ -2,8 +2,8 @@ import { LinkedList, Node } from "./linked-list.js";
 
 class HashMap {
   capacity = 16;
-  buckets = Array.from({ length: this.capacity }, () => new LinkedList());
   loadFactor = 0.75;
+  buckets = Array.from({ length: this.capacity }, () => new LinkedList());
 
   hash(key) {
     let hashCode = 0;
@@ -137,3 +137,5 @@ map.set("kiwi", "green");
 console.log(map.keys());
 console.log(map.values());
 console.log(map.entries());
+
+export {HashMap};
