@@ -46,11 +46,26 @@ class HashMap {
     if(this.get(key) === undefined) return false;
     else return true;
   }
+
+  remove(key) {
+    const index = this.hash(key);
+
+    let currentNode = this.buckets[index].head;
+    while(currentNode !== null) {
+      if(currentNode.value.key === key) {
+        this.buckets[index].head = currentNode.nextNode;
+        currentNode = null;
+        return true;
+      }
+      currentNode = currentNode.nextNode
+    }
+    return false;
+  }
 }
 
 const map = new HashMap();
 map.set("apple", "red");
 map.set("apple", "fruit");
 console.log(map.buckets[map.hash("apple")]);
-console.log(map.get("red"));
-console.log(map.has("red"))
+console.log(map.remove("apple"));
+// console.log(map.has("red"))
