@@ -17,6 +17,9 @@ class HashMap {
 
   set(key, value) {
     const index = this.hash(key);
+    if (index < 0 || index >= this.buckets.length) {
+      throw new Error("Trying to access index out of bounds");
+    }
 
     let currentNode = this.buckets[index].head;
     while (currentNode !== null) {
@@ -45,6 +48,9 @@ class HashMap {
 
   get(key) {
     const index = this.hash(key);
+    if (index < 0 || index >= this.buckets.length) {
+      throw new Error("Trying to access index out of bounds");
+    }
 
     let currentNode = this.buckets[index].head;
     while (currentNode !== null) {
@@ -63,6 +69,9 @@ class HashMap {
 
   remove(key) {
     const index = this.hash(key);
+    if (index < 0 || index >= this.buckets.length) {
+      throw new Error("Trying to access index out of bounds");
+    }
 
     let currentNode = this.buckets[index].head;
     let previousNode = null;
@@ -72,8 +81,7 @@ class HashMap {
         if (previousNode === null) {
           this.buckets[index].head = currentNode.nextNode;
           return true;
-        }
-        else {
+        } else {
           previousNode.nextNode = currentNode.nextNode;
           return true;
         }
