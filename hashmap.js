@@ -17,10 +17,19 @@ class HashMap {
 
   set(key, value) {
     const index = this.hash(key);
-    this.buckets[index].append({key: key, value: value});
+    let currentNode = this.buckets[index].head;
+    while(currentNode !== null) {
+      if(currentNode.value.key === key) {
+        currentNode.value.value = value;
+        return;
+      }
+      currentNode = currentNode.nextNode;
+    }
+    this.buckets[index].append({ key: key, value: value });
   }
 }
 
 const map = new HashMap();
 map.set("apple", "red");
+map.set("apple", "fruit");
 console.log(map.buckets[map.hash("apple")]);
