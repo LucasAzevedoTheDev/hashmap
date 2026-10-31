@@ -65,12 +65,20 @@ class HashMap {
     const index = this.hash(key);
 
     let currentNode = this.buckets[index].head;
+    let previousNode = null;
+
     while (currentNode !== null) {
       if (currentNode.value.key === key) {
-        this.buckets[index].head = currentNode.nextNode;
-        currentNode = null;
-        return true;
+        if (previousNode === null) {
+          this.buckets[index].head = currentNode.nextNode;
+          return true;
+        }
+        else {
+          previousNode.nextNode = currentNode.nextNode;
+          return true;
+        }
       }
+      previousNode = currentNode;
       currentNode = currentNode.nextNode;
     }
     return false;
