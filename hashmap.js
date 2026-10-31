@@ -28,7 +28,7 @@ class HashMap {
     }
     this.buckets[index].append({ key: key, value: value });
 
-    if (this.capacity * this.loadFactor > this.length()) {
+    if (this.length() > this.capacity * this.loadFactor) {
       this.grow();
     }
   }
