@@ -73,15 +73,31 @@ class HashMap {
   clear() {
     this.buckets = Array.from({ length: this.capacity }, () => new LinkedList());
   }
+  keys() {
+    const array = [];
+    
+    this.buckets.forEach((bucket) => {
+      let currentNode = bucket.head;
+      while(currentNode !== null) {
+        if(currentNode.value.key !== null) {
+          array.push(currentNode.value.key)
+        }
+        currentNode = currentNode.nextNode;
+      }
+    })
+    return array;
+  }
 }
 
 const map = new HashMap();
 map.set("apple", "red");
 map.set("apple", "fruit");
 map.set("banana", "yellow");
+map.set("kiwi", "green");
 // console.log(map.buckets[map.hash("apple")]);
 // console.log(map.remove("apple"));
 // console.log(map.has("red"))
-console.log(map.buckets);
-map.clear();
-console.log(map.buckets);
+// console.log(map.buckets);
+// map.clear();
+// console.log(map.buckets);
+console.log(map.keys())
