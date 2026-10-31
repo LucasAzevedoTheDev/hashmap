@@ -106,6 +106,21 @@ class HashMap {
     });
     return array;
   }
+
+  entries() {
+    const array = [];
+
+    this.buckets.forEach((bucket) => {
+      let currentNode = bucket.head;
+      while (currentNode !== null) {
+        if (currentNode.value.key !== null) {
+          array.push([currentNode.value.key, currentNode.value.value]);
+        }
+        currentNode = currentNode.nextNode;
+      }
+    });
+    return array;
+  }
 }
 
 const map = new HashMap();
@@ -121,3 +136,4 @@ map.set("kiwi", "green");
 // console.log(map.buckets);
 console.log(map.keys());
 console.log(map.values());
+console.log(map.entries());
