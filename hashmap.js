@@ -31,7 +31,7 @@ class HashMap {
 
   get(key) {
     const index = this.hash(key);
-    
+
     let currentNode = this.buckets[index].head;
     while(currentNode !== null) {
       if(currentNode.value.key === key) {
@@ -41,6 +41,11 @@ class HashMap {
     }
     return undefined;
   }
+
+  has(key) {
+    if(this.get(key) === undefined) return false;
+    else return true;
+  }
 }
 
 const map = new HashMap();
@@ -48,3 +53,4 @@ map.set("apple", "red");
 map.set("apple", "fruit");
 console.log(map.buckets[map.hash("apple")]);
 console.log(map.get("red"));
+console.log(map.has("red"))
