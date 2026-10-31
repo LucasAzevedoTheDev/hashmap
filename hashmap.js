@@ -61,11 +61,21 @@ class HashMap {
     }
     return false;
   }
+
+  length() {
+    let counter = 0
+    this.buckets.forEach((bucket) => {
+       counter += bucket.size();
+    })
+    return counter;
+  }
 }
 
 const map = new HashMap();
 map.set("apple", "red");
 map.set("apple", "fruit");
-console.log(map.buckets[map.hash("apple")]);
-console.log(map.remove("apple"));
+map.set("banana", "yellow");
+// console.log(map.buckets[map.hash("apple")]);
+// console.log(map.remove("apple"));
 // console.log(map.has("red"))
+console.log(map.length());
