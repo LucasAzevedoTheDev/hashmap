@@ -71,20 +71,39 @@ class HashMap {
   }
 
   clear() {
-    this.buckets = Array.from({ length: this.capacity }, () => new LinkedList());
+    this.buckets = Array.from(
+      { length: this.capacity },
+      () => new LinkedList(),
+    );
   }
+
   keys() {
     const array = [];
-    
+
     this.buckets.forEach((bucket) => {
       let currentNode = bucket.head;
-      while(currentNode !== null) {
-        if(currentNode.value.key !== null) {
-          array.push(currentNode.value.key)
+      while (currentNode !== null) {
+        if (currentNode.value.key !== null) {
+          array.push(currentNode.value.key);
         }
         currentNode = currentNode.nextNode;
       }
-    })
+    });
+    return array;
+  }
+
+  values() {
+    const array = [];
+
+    this.buckets.forEach((bucket) => {
+      let currentNode = bucket.head;
+      while (currentNode !== null) {
+        if (currentNode.value.value !== null) {
+          array.push(currentNode.value.value);
+        }
+        currentNode = currentNode.nextNode;
+      }
+    });
     return array;
   }
 }
@@ -100,4 +119,5 @@ map.set("kiwi", "green");
 // console.log(map.buckets);
 // map.clear();
 // console.log(map.buckets);
-console.log(map.keys())
+console.log(map.keys());
+console.log(map.values());
