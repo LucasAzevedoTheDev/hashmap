@@ -2,7 +2,7 @@ import { LinkedList, Node } from "./linked-list.js";
 
 class HashMap {
   capacity = 16;
-  buckets = Array.from({ length: this.capacity }, () => null);
+  buckets = Array.from({ length: this.capacity }, () => new LinkedList());
   loadFactor = 0.75;
 
   hash(key) {
@@ -16,8 +16,11 @@ class HashMap {
   }
 
   set(key, value) {
-    // 
+    const index = this.hash(key);
+    this.buckets[index].append({key: key, value: value});
   }
 }
 
-console.log(new HashMap().hash("alo"));
+const map = new HashMap();
+map.set("apple", "red");
+console.log(map.buckets[map.hash("apple")]);
