@@ -16,6 +16,6 @@ test.set("kite", "pink");
 test.set("lion", "golden");
 
 test.set('moon', 'silver')
-t
+
 console.log(test.length())
 console.log(test)
